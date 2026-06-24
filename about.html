@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SwiftFit Studio — About</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F7F9FC;
+      color: #0F1923;
+      line-height: 1.6
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      line-height: 1.15
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247, 249, 252, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #E2EAF4;
+      padding: 0 8%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.35rem;
+      color: #0F1923;
+      text-decoration: none
+    }
+
+    .nav-logo span {
+      color: #00C6A2
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #5E6E82;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.2s
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #00C6A2
+    }
+
+    .nav-cta {
+      background: #00C6A2;
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.2s
+    }
+
+    .nav-cta:hover {
+      background: #00A88A
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #0F1923;
+      border-radius: 2px
+    }
+
+    /* PAGE HEADER */
+    .page-header {
+      background: #0F1923;
+      padding: 5rem 8% 4rem;
+      color: white
+    }
+
+    .breadcrumb {
+      font-size: 0.78rem;
+      color: #8BA5BF;
+      margin-bottom: 1rem
+    }
+
+    .breadcrumb a {
+      color: #8BA5BF;
+      text-decoration: none
+    }
+
+    .breadcrumb a:hover {
+      color: #00C6A2
+    }
+
+    .page-header h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      color: white;
+      margin-bottom: 0.8rem
+    }
+
+    .page-header p {
+      color: #8BA5BF;
+      font-size: 1rem;
+      max-width: 520px;
+      line-height: 1.75
+    }
+
+    /* STORY */
+    .story {
+      padding: 5rem 8%;
+      background: white
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #00C6A2;
+      margin-bottom: 0.5rem
+    }
+
+    .section-title {
+      font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+      font-weight: 800;
+      color: #0F1923;
+      margin-bottom: 0.9rem
+    }
+
+    .divider {
+      width: 44px;
+      height: 3px;
+      background: #00C6A2;
+      border-radius: 2px;
+      margin: 0.8rem 0 1.4rem
+    }
+
+    .story-text p {
+      font-size: 0.95rem;
+      color: #5E6E82;
+      line-height: 1.8;
+      margin-bottom: 1rem
+    }
+
+    .about-img-stack {
+      position: relative;
+      height: 440px
+    }
+
+    .img-main {
+      position: absolute;
+      width: 74%;
+      height: 320px;
+      background: linear-gradient(140deg, #0F1923 0%, #1A3550 100%);
+      border-radius: 16px;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .img-main svg {
+      width: 90px;
+      height: 90px;
+      stroke: #00C6A2;
+      fill: none;
+      stroke-width: 1.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.4
+    }
+
+    .img-accent {
+      position: absolute;
+      width: 54%;
+      height: 190px;
+      background: #00C6A2;
+      border-radius: 16px;
+      bottom: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      padding: 1.5rem;
+      text-align: center
+    }
+
+    .img-accent strong {
+      font-size: 1.8rem;
+      display: block;
+      margin-bottom: 0.3rem
+    }
+
+    /* VALUES */
+    .values {
+      padding: 5rem 8%;
+      background: #F7F9FC
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.4rem;
+      margin-top: 3rem
+    }
+
+    .value-card {
+      background: white;
+      border: 1px solid #E2EAF4;
+      border-radius: 14px;
+      padding: 1.8rem;
+      text-align: center
+    }
+
+    .value-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #00C6A2;
+      margin-bottom: 0.3rem
+    }
+
+    .value-label {
+      font-size: 0.85rem;
+      color: #5E6E82;
+      line-height: 1.5
+    }
+
+    /* TEAM */
+    .team {
+      padding: 5rem 8%;
+      background: white
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.6rem;
+      margin-top: 3rem
+    }
+
+    .team-card {
+      background: #F7F9FC;
+      border-radius: 16px;
+      overflow: hidden
+    }
+
+    .team-photo {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .team-photo.c1 {
+      background: linear-gradient(135deg, #0F1923, #1E4080)
+    }
+
+    .team-photo.c2 {
+      background: linear-gradient(135deg, #004D40, #00796B)
+    }
+
+    .team-photo.c3 {
+      background: linear-gradient(135deg, #311B92, #512DA8)
+    }
+
+    .team-photo svg {
+      width: 64px;
+      height: 64px;
+      stroke: rgba(255, 255, 255, 0.3);
+      fill: none;
+      stroke-width: 1.2;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    .team-info {
+      padding: 1.4rem
+    }
+
+    .team-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0F1923;
+      margin-bottom: 0.2rem
+    }
+
+    .team-role {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #00C6A2;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.6rem
+    }
+
+    .team-bio {
+      font-size: 0.845rem;
+      color: #5E6E82;
+      line-height: 1.65
+    }
+
+    /* MISSION */
+    .mission {
+      padding: 5rem 8%;
+      background: #0F1923;
+      text-align: center
+    }
+
+    .mission h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 800;
+      color: white;
+      margin-bottom: 1rem
+    }
+
+    .mission p {
+      font-size: 1rem;
+      color: #8BA5BF;
+      max-width: 620px;
+      margin: 0 auto 2rem;
+      line-height: 1.8
+    }
+
+    .btn-primary {
+      background: #00C6A2;
+      color: white;
+      padding: 0.85rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      display: inline-block;
+      transition: background 0.2s, transform 0.15s
+    }
+
+    .btn-primary:hover {
+      background: #00A88A;
+      transform: translateY(-1px)
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0F1923;
+      color: #8BA5BF;
+      padding: 3rem 8% 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06)
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08)
+    }
+
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 0.9rem
+    }
+
+    .footer-logo span {
+      color: #00C6A2
+    }
+
+    .footer-desc {
+      font-size: 0.83rem;
+      line-height: 1.75
+    }
+
+    .footer-heading {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      margin-bottom: 0.9rem
+    }
+
+    .footer-links {
+      list-style: none;
+      display: grid;
+      gap: 0.55rem
+    }
+
+    .footer-links a {
+      color: #8BA5BF;
+      text-decoration: none;
+      font-size: 0.855rem;
+      transition: color 0.2s
+    }
+
+    .footer-links a:hover {
+      color: #00C6A2
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.4rem;
+      font-size: 0.78rem
+    }
+
+    @media(max-width:900px) {
+      .values-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(max-width:768px) {
+      nav {
+        padding: 0 5%
+      }
+
+      .nav-links,
+      .nav-cta {
+        display: none
+      }
+
+      .hamburger {
+        display: flex
+      }
+
+      .story-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem
+      }
+
+      .page-header,
+      .story,
+      .values,
+      .team,
+      .mission {
+        padding: 3rem 5%
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 0.4rem;
+        text-align: center
+      }
+
+      .about-img-stack {
+        height: 280px
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Swift<span>Fit</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Book a Session</a>
+    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="page-header">
+    <div class="breadcrumb"><a href="index.html">Home</a> / About</div>
+    <h1>About SwiftFit Studio</h1>
+    <p>We are a team of passionate coaches dedicated to helping every person unlock their full physical potential
+      through science, support, and community.</p>
+  </div>
+
+  <section class="story">
+    <div class="story-grid">
+      <div class="about-img-stack">
+        <div class="img-main">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5z" />
+            <path d="M2 17l10 5 10-5" />
+            <path d="M2 12l10 5 10-5" />
+          </svg>
+        </div>
+        <div class="img-accent"><strong>2012</strong>Founded in Springfield</div>
+      </div>
+      <div class="story-text">
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title">From a Small Studio to a Thriving Community</h2>
+        <div class="divider"></div>
+        <p>SwiftFit Studio started in 2012 as a single-room personal training space with one coach and a handful of
+          clients. From day one, our founder Marcus Webb had one guiding principle: treat every client like the only
+          client.</p>
+        <p>Over the years, that philosophy attracted the right people — coaches who cared deeply and clients who were
+          ready to commit. Today, SwiftFit is home to a team of 8 certified trainers and over 500 active members across
+          all fitness levels.</p>
+        <p>We expanded our facilities in 2019 and launched online coaching in 2021, but our core has never changed —
+          personal, evidence-based, results-driven training built around the individual.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="values">
+    <div class="section-label">By the Numbers</div>
+    <h2 class="section-title">SwiftFit at a Glance</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-num">500+</div>
+        <div class="value-label">Active members across all fitness levels</div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">12yr</div>
+        <div class="value-label">Years serving our local community</div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">8</div>
+        <div class="value-label">Certified coaches on our team</div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">98%</div>
+        <div class="value-label">Client satisfaction rate year over year</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="team">
+    <div class="section-label">Meet the Coaches</div>
+    <h2 class="section-title">The People Behind Your Progress</h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-photo c1">
+          <svg viewBox="0 0 24 24">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Marcus Webb</div>
+          <div class="team-role">Founder &amp; Head Coach</div>
+          <p class="team-bio">CSCS certified with 12 years of experience in strength and conditioning. Marcus
+            specializes in long-term athletic development and body recomposition.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo c2">
+          <svg viewBox="0 0 24 24">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Priya Nair</div>
+          <div class="team-role">Nutrition &amp; Wellness Coach</div>
+          <p class="team-bio">Registered dietitian and certified personal trainer. Priya brings a holistic approach to
+            health, merging nutrition science with practical lifestyle habits.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo c3">
+          <svg viewBox="0 0 24 24">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </div>
+        <div class="team-info">
+          <div class="team-name">David Osei</div>
+          <div class="team-role">Performance Coach</div>
+          <p class="team-bio">Former collegiate sprinter and ACE-certified trainer. David works with athletes looking to
+            improve speed, power, and sport-specific conditioning.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mission">
+    <h2>Our Mission</h2>
+    <p>To make expert, personalized fitness coaching accessible to everyone — and to build a community where showing up
+      is celebrated as much as the results.</p>
+    <a href="contact.html" class="btn-primary">Train With Us</a>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Swift<span>Fit</span></div>
+        <p class="footer-desc">A community-first personal training studio helping people build lasting strength,
+          confidence, and health — one session at a time.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Plans</div>
+        <ul class="footer-links">
+          <li><a href="services.html">Starter</a></li>
+          <li><a href="services.html">Pro</a></li>
+          <li><a href="services.html">Elite</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Connect</div>
+        <ul class="footer-links">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">YouTube</a></li>
+          <li><a href="#">TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>2025 SwiftFit Studio. All rights reserved.</span>
+      <span>Built with HTML &amp; CSS</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      var nl = document.querySelector('.nav-links');
+      var open = nl.style.display === 'flex';
+      nl.style.cssText = open ? 'display:none' : 'display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:#F7F9FC;padding:1rem 5%;border-bottom:1px solid #E2EAF4;z-index:99;gap:1rem';
+    }
+  </script>
+</body>
+
+</html>

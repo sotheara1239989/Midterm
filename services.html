@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SwiftFit Studio — Services</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F7F9FC;
+      color: #0F1923;
+      line-height: 1.6
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      line-height: 1.15
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247, 249, 252, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #E2EAF4;
+      padding: 0 8%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.35rem;
+      color: #0F1923;
+      text-decoration: none
+    }
+
+    .nav-logo span {
+      color: #00C6A2
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #5E6E82;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.2s
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #00C6A2
+    }
+
+    .nav-cta {
+      background: #00C6A2;
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.2s
+    }
+
+    .nav-cta:hover {
+      background: #00A88A
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #0F1923;
+      border-radius: 2px
+    }
+
+    .page-header {
+      background: #0F1923;
+      padding: 5rem 8% 4rem;
+      color: white
+    }
+
+    .breadcrumb {
+      font-size: 0.78rem;
+      color: #8BA5BF;
+      margin-bottom: 1rem
+    }
+
+    .breadcrumb a {
+      color: #8BA5BF;
+      text-decoration: none
+    }
+
+    .breadcrumb a:hover {
+      color: #00C6A2
+    }
+
+    .page-header h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      color: white;
+      margin-bottom: 0.8rem
+    }
+
+    .page-header p {
+      color: #8BA5BF;
+      font-size: 1rem;
+      max-width: 540px;
+      line-height: 1.75
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #00C6A2;
+      margin-bottom: 0.5rem
+    }
+
+    .section-title {
+      font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+      font-weight: 800;
+      color: #0F1923;
+      margin-bottom: 0.9rem
+    }
+
+    .section-sub {
+      font-size: 0.97rem;
+      color: #5E6E82;
+      line-height: 1.75
+    }
+
+    /* WHAT WE OFFER */
+    .offers {
+      padding: 5rem 8%;
+      background: white
+    }
+
+    .offer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem
+    }
+
+    .offer-card {
+      border: 1px solid #E2EAF4;
+      border-radius: 14px;
+      padding: 2rem;
+      transition: box-shadow 0.2s, transform 0.2s
+    }
+
+    .offer-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07)
+    }
+
+    .offer-icon {
+      width: 48px;
+      height: 48px;
+      background: #E8F9F5;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem
+    }
+
+    .offer-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: #00C6A2;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    .offer-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0F1923;
+      margin-bottom: 0.5rem
+    }
+
+    .offer-card p {
+      font-size: 0.875rem;
+      color: #5E6E82;
+      line-height: 1.7
+    }
+
+    /* PRICING */
+    .pricing {
+      padding: 5rem 8%;
+      background: #F7F9FC;
+      text-align: center
+    }
+
+    .pricing-intro {
+      max-width: 560px;
+      margin: 0 auto 3rem
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+      text-align: left
+    }
+
+    .pricing-card {
+      background: white;
+      border: 1px solid #E2EAF4;
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.07)
+    }
+
+    .pricing-card.featured {
+      border-color: #00C6A2;
+      border-width: 2px
+    }
+
+    .badge {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #00C6A2;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 1rem;
+      border-radius: 20px;
+      white-space: nowrap
+    }
+
+    .plan-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #5E6E82;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.8rem
+    }
+
+    .plan-price {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #0F1923;
+      margin-bottom: 0.2rem
+    }
+
+    .plan-price sup {
+      font-size: 1.1rem;
+      font-weight: 700;
+      vertical-align: top;
+      margin-top: 0.6rem;
+      display: inline-block
+    }
+
+    .plan-price sub {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: #5E6E82
+    }
+
+    .plan-desc {
+      font-size: 0.84rem;
+      color: #5E6E82;
+      margin-bottom: 1.4rem;
+      line-height: 1.65;
+      border-bottom: 1px solid #F0F4FA;
+      padding-bottom: 1.2rem
+    }
+
+    .plan-features {
+      list-style: none;
+      margin-bottom: 1.8rem;
+      display: grid;
+      gap: 0.65rem
+    }
+
+    .plan-features li {
+      display: flex;
+      gap: 0.55rem;
+      align-items: center;
+      font-size: 0.86rem;
+      color: #3D4E5E
+    }
+
+    .check {
+      width: 18px;
+      height: 18px;
+      background: #E8F9F5;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .check svg {
+      width: 10px;
+      height: 10px;
+      stroke: #00C6A2;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    .btn-plan {
+      display: block;
+      text-align: center;
+      padding: 0.8rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s;
+      font-family: 'Inter', sans-serif
+    }
+
+    .btn-outline-plan {
+      border: 1.5px solid #CBD5E1;
+      color: #0F1923;
+      background: none
+    }
+
+    .btn-outline-plan:hover {
+      border-color: #00C6A2;
+      color: #00C6A2
+    }
+
+    .btn-fill-plan {
+      background: #00C6A2;
+      color: white;
+      border: none;
+      cursor: pointer
+    }
+
+    .btn-fill-plan:hover {
+      background: #00A88A
+    }
+
+    /* COMPARE TABLE */
+    .compare {
+      padding: 5rem 8%;
+      background: white
+    }
+
+    .compare-wrap {
+      overflow-x: auto;
+      margin-top: 3rem
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem
+    }
+
+    thead th {
+      padding: 1rem;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #5E6E82;
+      text-align: center;
+      border-bottom: 2px solid #E2EAF4
+    }
+
+    thead th:first-child {
+      text-align: left
+    }
+
+    thead th.hi {
+      color: #00C6A2
+    }
+
+    tbody tr:nth-child(even) {
+      background: #F7F9FC
+    }
+
+    tbody td {
+      padding: 0.9rem 1rem;
+      color: #3D4E5E;
+      text-align: center;
+      border-bottom: 1px solid #F0F4FA
+    }
+
+    tbody td:first-child {
+      text-align: left;
+      font-weight: 500;
+      color: #0F1923
+    }
+
+    .tick {
+      color: #00C6A2;
+      font-weight: 700;
+      font-size: 1rem
+    }
+
+    .cross {
+      color: #CBD5E1;
+      font-size: 1rem
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 5rem 8%;
+      background: #F7F9FC
+    }
+
+    .faq-list {
+      margin-top: 3rem;
+      display: grid;
+      gap: 1rem;
+      max-width: 760px
+    }
+
+    .faq-item {
+      background: white;
+      border: 1px solid #E2EAF4;
+      border-radius: 12px;
+      overflow: hidden
+    }
+
+    .faq-q {
+      padding: 1.2rem 1.5rem;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #0F1923;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none
+    }
+
+    .faq-q:hover {
+      color: #00C6A2
+    }
+
+    .faq-q svg {
+      width: 16px;
+      height: 16px;
+      stroke: #5E6E82;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      flex-shrink: 0;
+      transition: transform 0.2s
+    }
+
+    .faq-q.open svg {
+      transform: rotate(180deg)
+    }
+
+    .faq-a {
+      padding: 0 1.5rem;
+      font-size: 0.875rem;
+      color: #5E6E82;
+      line-height: 1.75;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s
+    }
+
+    .faq-a.open {
+      max-height: 200px;
+      padding-bottom: 1.2rem
+    }
+
+    /* CTA */
+    .cta-banner {
+      padding: 4rem 8%;
+      background: #0F1923;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap
+    }
+
+    .cta-banner h2 {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 800;
+      color: white
+    }
+
+    .cta-banner p {
+      color: #8BA5BF;
+      font-size: 0.92rem;
+      margin-top: 0.4rem
+    }
+
+    .btn-primary {
+      background: #00C6A2;
+      color: white;
+      padding: 0.85rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      display: inline-block;
+      transition: background 0.2s, transform 0.15s
+    }
+
+    .btn-primary:hover {
+      background: #00A88A;
+      transform: translateY(-1px)
+    }
+
+    footer {
+      background: #0F1923;
+      color: #8BA5BF;
+      padding: 3rem 8% 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06)
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08)
+    }
+
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 0.9rem
+    }
+
+    .footer-logo span {
+      color: #00C6A2
+    }
+
+    .footer-desc {
+      font-size: 0.83rem;
+      line-height: 1.75
+    }
+
+    .footer-heading {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      margin-bottom: 0.9rem
+    }
+
+    .footer-links {
+      list-style: none;
+      display: grid;
+      gap: 0.55rem
+    }
+
+    .footer-links a {
+      color: #8BA5BF;
+      text-decoration: none;
+      font-size: 0.855rem;
+      transition: color 0.2s
+    }
+
+    .footer-links a:hover {
+      color: #00C6A2
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.4rem;
+      font-size: 0.78rem
+    }
+
+    @media(max-width:900px) {
+
+      .offer-grid,
+      .pricing-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(max-width:768px) {
+      nav {
+        padding: 0 5%
+      }
+
+      .nav-links,
+      .nav-cta {
+        display: none
+      }
+
+      .hamburger {
+        display: flex
+      }
+
+      .page-header,
+      .offers,
+      .pricing,
+      .compare,
+      .faq {
+        padding: 3rem 5%
+      }
+
+      .cta-banner {
+        padding: 3rem 5%;
+        flex-direction: column;
+        text-align: center
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 0.4rem;
+        text-align: center
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Swift<span>Fit</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Book a Session</a>
+    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="page-header">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Services</div>
+    <h1>Our Services &amp; Pricing</h1>
+    <p>From beginner-friendly starter sessions to full elite coaching — every plan is designed to get you real, lasting
+      results.</p>
+  </div>
+
+  <section class="offers">
+    <div class="section-label">What We Offer</div>
+    <h2 class="section-title">Training Programs for Every Goal</h2>
+    <div class="offer-grid">
+      <div class="offer-card">
+        <div class="offer-icon"><svg viewBox="0 0 24 24">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <line x1="19" y1="8" x2="19" y2="14" />
+            <line x1="22" y1="11" x2="16" y2="11" />
+          </svg></div>
+        <h3>Personal Training</h3>
+        <p>One-on-one sessions tailored to your specific fitness level and goals. Your coach adapts every workout in
+          real time.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-icon"><svg viewBox="0 0 24 24">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+            <polyline points="10 9 9 9 8 9" />
+          </svg></div>
+        <h3>Custom Programming</h3>
+        <p>A fully written training plan you can follow on your own — includes exercise selection, sets, reps, and
+          weekly progression.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-icon"><svg viewBox="0 0 24 24">
+            <path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18M15 3v18" stroke-width="1.5" />
+          </svg></div>
+        <h3>Nutrition Coaching</h3>
+        <p>Practical guidance on eating for your goals — no extreme diets, just sustainable habits built around your
+          lifestyle.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-icon"><svg viewBox="0 0 24 24">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+          </svg></div>
+        <h3>Performance Tracking</h3>
+        <p>Monthly assessments, body composition reviews, and benchmark tests so your progress is always measurable.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-icon"><svg viewBox="0 0 24 24">
+            <rect x="2" y="3" width="20" height="14" rx="2" />
+            <line x1="8" y1="21" x2="16" y2="21" />
+            <line x1="12" y1="17" x2="12" y2="21" />
+          </svg></div>
+        <h3>Online Coaching</h3>
+        <p>Train anywhere in the world with a dedicated remote coach, video check-ins, and an app-based training
+          platform.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-icon"><svg viewBox="0 0 24 24">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg></div>
+        <h3>Recovery &amp; Mobility</h3>
+        <p>Dedicated recovery sessions covering foam rolling, stretching protocols, and corrective exercises to keep you
+          injury-free.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing">
+    <div class="pricing-intro">
+      <div class="section-label">Pricing Plans</div>
+      <h2 class="section-title">Simple, Transparent Pricing</h2>
+      <p class="section-sub">No hidden fees, no lock-in contracts. Cancel or upgrade anytime.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price"><sup>$</sup>89<sub>/mo</sub></div>
+        <p class="plan-desc">Perfect for beginners taking the first step toward a healthier lifestyle.</p>
+        <ul class="plan-features">
+          <li><span class="check"><svg viewBox="0 0 10 10">
+                <polyline points="1.5,5 4,7.5 8.5,2.5" />
+              </svg></span>2 sessions per week</li>
+          <li><span class="check"><svg viewBox="0 0 10 10">
+                <polyline points="1.5,5 4,7.5 8.5,2.5" />
+              </svg></span>Initial fitness assessment</li>
+          <li><span class="check"><svg viewBox="0 0 10 10">
+                <polyline points="1.5,5 4,7.5 8.5,2.5" />
+              </svg></span>Custom workout plan</li>
+          <li><span class="check"><svg viewBox="0 0 10 10">
+                <polyline points="1.5,5 4,7.5 8.5,2.5" />
+              </svg></span>Email support</li>
+        </ul>
+        <a href="contact.html" class="btn-plan btn-outline-plan">Get Started</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="badge">Most Popular</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price"><sup>$</sup>159<sub>/mo</sub></div>
+        <p class="plan-desc">Our most popular plan for those serious about consistent, measurable results.</p>
+        <ul class="plan-features">
+          <li><span class="check"><svg viewBox="0 0 10 10">
+                <polyline points="1.5,5 4,7.5 8.5,2.5" />
+              </svg></span>4 sessions per week</li>
+          <li><span class="check"><svg viewBox="0 0 10 10">
+                <polyline points="1.5,5 4,7.5 8.5,2.5" />
+              </svg></span>Monthly body composition analysis</li>
+          <li><span class="check"><svg viewBox="0 0 10 10">
+                <polyline points="1.5,5 4,7.5 8.5,2.5" />
+              </svg></span>Nutrition guidance</li>
+          <li><span class="check"><svg viewBox="0 0 10 10">
+                <polyline points="1.5,5 4,7.5 8.5,2.5" />
+              </svg></span>Priority messaging support</li>
+          <li><span class="check"><svg viewBox="0 0 10 10">
+                <polyline points="1.5,5 4,7.5 8.5,2.5" />
+              </svg></span>Progress photo tracking</li>
+        </ul>
+        <a href="contact.html" class="btn-plan btn-fill-plan">Get Started</a>
+      </div>
+      <div class="pricing-card">
+        <div class="plan-name">Elite</div>
+        <div class="plan-price"><sup>$</sup>249<sub>/mo</sub></div>
+        <p class="plan-desc">Full-access coaching with daily accountability for athletes and high-performers.</p>
+        <ul class="plan-features">
+          <li><span class="check"><svg viewBox="0 0 10 10">
+                <polyline points="1.5,5 4,7.5 8.5,2.5" />
+              </svg></span>Unlimited sessions</li>
+          <li><span class="check"><svg viewBox="0 0 10 10">
+                <polyline points="1.5,5 4,7.5 8.5,2.5" />
+              </svg></span>Full nutrition plan + meal prep</li>
+          <li><span class="check"><svg viewBox="0 0 10 10">
+                <polyline points="1.5,5 4,7.5 8.5,2.5" />
+              </svg></span>24/7 coach access</li>
+          <li><span class="check"><svg viewBox="0 0 10 10">
+                <polyline points="1.5,5 4,7.5 8.5,2.5" />
+              </svg></span>Recovery &amp; mobility work</li>
+          <li><span class="check"><svg viewBox="0 0 10 10">
+                <polyline points="1.5,5 4,7.5 8.5,2.5" />
+              </svg></span>Quarterly goal-setting sessions</li>
+        </ul>
+        <a href="contact.html" class="btn-plan btn-outline-plan">Get Started</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="compare">
+    <div class="section-label">Compare Plans</div>
+    <h2 class="section-title">See What's Included</h2>
+    <div class="compare-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Starter</th>
+            <th class="hi">Pro</th>
+            <th>Elite</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Weekly sessions</td>
+            <td>2</td>
+            <td>4</td>
+            <td>Unlimited</td>
+          </tr>
+          <tr>
+            <td>Fitness assessment</td>
+            <td><span class="tick">Yes</span></td>
+            <td><span class="tick">Yes</span></td>
+            <td><span class="tick">Yes</span></td>
+          </tr>
+          <tr>
+            <td>Custom workout plan</td>
+            <td><span class="tick">Yes</span></td>
+            <td><span class="tick">Yes</span></td>
+            <td><span class="tick">Yes</span></td>
+          </tr>
+          <tr>
+            <td>Email support</td>
+            <td><span class="tick">Yes</span></td>
+            <td><span class="tick">Yes</span></td>
+            <td><span class="tick">Yes</span></td>
+          </tr>
+          <tr>
+            <td>Nutrition guidance</td>
+            <td><span class="cross">—</span></td>
+            <td><span class="tick">Yes</span></td>
+            <td><span class="tick">Yes</span></td>
+          </tr>
+          <tr>
+            <td>Body composition analysis</td>
+            <td><span class="cross">—</span></td>
+            <td>Monthly</td>
+            <td>Monthly</td>
+          </tr>
+          <tr>
+            <td>Progress photo tracking</td>
+            <td><span class="cross">—</span></td>
+            <td><span class="tick">Yes</span></td>
+            <td><span class="tick">Yes</span></td>
+          </tr>
+          <tr>
+            <td>Full nutrition plan</td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="tick">Yes</span></td>
+          </tr>
+          <tr>
+            <td>24/7 coach access</td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="tick">Yes</span></td>
+          </tr>
+          <tr>
+            <td>Recovery &amp; mobility</td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="tick">Yes</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Common Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I change my plan after signing up? <svg viewBox="0 0 24 24">
+            <polyline points="6 9 12 15 18 9" />
+          </svg></div>
+        <div class="faq-a">Yes, you can upgrade or downgrade your plan at any time. Changes take effect at the start of
+          your next billing cycle with no penalty.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Is there a contract or minimum commitment? <svg
+            viewBox="0 0 24 24">
+            <polyline points="6 9 12 15 18 9" />
+          </svg></div>
+        <div class="faq-a">No contracts and no lock-in periods. All plans are month-to-month and you can cancel anytime
+          with 7 days' notice before your next billing date.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What happens if I miss a session? <svg viewBox="0 0 24 24">
+            <polyline points="6 9 12 15 18 9" />
+          </svg></div>
+        <div class="faq-a">Sessions cancelled with 24+ hours notice can be rescheduled at no charge. Late cancellations
+          may be forfeited depending on your plan. Your coach will work with you to find what fits best.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Do you offer online coaching? <svg viewBox="0 0 24 24">
+            <polyline points="6 9 12 15 18 9" />
+          </svg></div>
+        <div class="faq-a">Yes. All plans can be delivered fully online via video sessions and our training app. Remote
+          clients receive the same level of coaching as in-person members.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-banner">
+    <div>
+      <h2>Not Sure Which Plan?</h2>
+      <p>Book a free 15-minute discovery call — we'll help you pick the right fit.</p>
+    </div>
+    <a href="contact.html" class="btn-primary">Talk to a Coach</a>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Swift<span>Fit</span></div>
+        <p class="footer-desc">A community-first personal training studio helping people build lasting strength,
+          confidence, and health — one session at a time.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Plans</div>
+        <ul class="footer-links">
+          <li><a href="services.html">Starter</a></li>
+          <li><a href="services.html">Pro</a></li>
+          <li><a href="services.html">Elite</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Connect</div>
+        <ul class="footer-links">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">YouTube</a></li>
+          <li><a href="#">TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>2025 SwiftFit Studio. All rights reserved.</span>
+      <span>Built with HTML &amp; CSS</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      var nl = document.querySelector('.nav-links');
+      var open = nl.style.display === 'flex';
+      nl.style.cssText = open ? 'display:none' : 'display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:#F7F9FC;padding:1rem 5%;border-bottom:1px solid #E2EAF4;z-index:99;gap:1rem';
+    }
+    function toggleFaq(el) {
+      var ans = el.nextElementSibling;
+      var isOpen = ans.classList.contains('open');
+      document.querySelectorAll('.faq-a').forEach(function (a) { a.classList.remove('open') });
+      document.querySelectorAll('.faq-q').forEach(function (q) { q.classList.remove('open') });
+      if (!isOpen) { ans.classList.add('open'); el.classList.add('open'); }
+    }
+  </script>
+</body>
+
+</html>

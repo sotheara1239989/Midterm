@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SwiftFit Studio — Contact</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F7F9FC;
+      color: #0F1923;
+      line-height: 1.6
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      line-height: 1.15
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247, 249, 252, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #E2EAF4;
+      padding: 0 8%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.35rem;
+      color: #0F1923;
+      text-decoration: none
+    }
+
+    .nav-logo span {
+      color: #00C6A2
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #5E6E82;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.2s
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #00C6A2
+    }
+
+    .nav-cta {
+      background: #00C6A2;
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.2s
+    }
+
+    .nav-cta:hover {
+      background: #00A88A
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #0F1923;
+      border-radius: 2px
+    }
+
+    .page-header {
+      background: #0F1923;
+      padding: 5rem 8% 4rem;
+      color: white
+    }
+
+    .breadcrumb {
+      font-size: 0.78rem;
+      color: #8BA5BF;
+      margin-bottom: 1rem
+    }
+
+    .breadcrumb a {
+      color: #8BA5BF;
+      text-decoration: none
+    }
+
+    .breadcrumb a:hover {
+      color: #00C6A2
+    }
+
+    .page-header h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      color: white;
+      margin-bottom: 0.8rem
+    }
+
+    .page-header p {
+      color: #8BA5BF;
+      font-size: 1rem;
+      max-width: 520px;
+      line-height: 1.75
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #00C6A2;
+      margin-bottom: 0.5rem
+    }
+
+    .section-title {
+      font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+      font-weight: 800;
+      color: #0F1923;
+      margin-bottom: 0.9rem
+    }
+
+    /* CONTACT MAIN */
+    .contact-main {
+      padding: 5rem 8%;
+      background: white
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 5rem
+    }
+
+    /* INFO SIDE */
+    .contact-info {
+      display: grid;
+      gap: 2rem;
+      align-content: start
+    }
+
+    .info-block h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0F1923;
+      margin-bottom: 1.2rem
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1.2rem
+    }
+
+    .ci-icon {
+      width: 44px;
+      height: 44px;
+      background: #E8F9F5;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0
+    }
+
+    .ci-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: #00C6A2;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    .ci-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #5E6E82;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.25rem
+    }
+
+    .ci-value {
+      font-size: 0.9rem;
+      color: #0F1923;
+      font-weight: 500;
+      line-height: 1.6
+    }
+
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.855rem;
+      margin-top: 0.5rem
+    }
+
+    .hours-table td {
+      padding: 0.35rem 0;
+      color: #5E6E82
+    }
+
+    .hours-table td:first-child {
+      color: #0F1923;
+      font-weight: 500;
+      padding-right: 2rem
+    }
+
+    .hours-table tr:last-child td {
+      color: #00A88A;
+      font-weight: 600
+    }
+
+    /* FORM SIDE */
+    .contact-form {
+      display: grid;
+      gap: 1.1rem
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1rem
+    }
+
+    .form-group {
+      display: grid;
+      gap: 0.35rem
+    }
+
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #3D4E5E
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid #E2EAF4;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-family: 'Inter', sans-serif;
+      color: #0F1923;
+      background: #F7F9FC;
+      transition: border-color 0.2s, background 0.2s;
+      outline: none
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: #00C6A2;
+      background: white
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px
+    }
+
+    .form-note {
+      font-size: 0.78rem;
+      color: #5E6E82;
+      line-height: 1.6
+    }
+
+    .btn-submit {
+      background: #00C6A2;
+      color: white;
+      padding: 0.9rem 2.2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s
+    }
+
+    .btn-submit:hover {
+      background: #00A88A;
+      transform: translateY(-1px)
+    }
+
+    /* SUCCESS STATE */
+    .success-msg {
+      display: none;
+      background: #E8F9F5;
+      border: 1px solid #00C6A2;
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: center
+    }
+
+    .success-msg svg {
+      width: 40px;
+      height: 40px;
+      stroke: #00C6A2;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      margin: 0 auto 0.8rem;
+      display: block
+    }
+
+    .success-msg h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0F1923;
+      margin-bottom: 0.3rem
+    }
+
+    .success-msg p {
+      font-size: 0.875rem;
+      color: #5E6E82
+    }
+
+    /* MAP PLACEHOLDER */
+    .map-section {
+      padding: 0 8% 5rem;
+      background: white
+    }
+
+    .map-box {
+      height: 300px;
+      background: linear-gradient(135deg, #0F1923 0%, #1A3550 100%);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #8BA5BF;
+      gap: 0.8rem
+    }
+
+    .map-box svg {
+      width: 40px;
+      height: 40px;
+      stroke: #00C6A2;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    .map-box p {
+      font-size: 0.88rem
+    }
+
+    /* SOCIAL */
+    .social-section {
+      padding: 4rem 8%;
+      background: #F7F9FC;
+      text-align: center
+    }
+
+    .social-section h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #0F1923;
+      margin-bottom: 0.5rem
+    }
+
+    .social-section p {
+      font-size: 0.9rem;
+      color: #5E6E82;
+      margin-bottom: 2rem
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      border: 1.5px solid #E2EAF4;
+      border-radius: 8px;
+      padding: 0.65rem 1.3rem;
+      text-decoration: none;
+      color: #0F1923;
+      font-size: 0.855rem;
+      font-weight: 600;
+      background: white;
+      transition: 0.2s
+    }
+
+    .social-btn:hover {
+      border-color: #00C6A2;
+      color: #00C6A2
+    }
+
+    .social-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    footer {
+      background: #0F1923;
+      color: #8BA5BF;
+      padding: 3rem 8% 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06)
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08)
+    }
+
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 0.9rem
+    }
+
+    .footer-logo span {
+      color: #00C6A2
+    }
+
+    .footer-desc {
+      font-size: 0.83rem;
+      line-height: 1.75
+    }
+
+    .footer-heading {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      margin-bottom: 0.9rem
+    }
+
+    .footer-links {
+      list-style: none;
+      display: grid;
+      gap: 0.55rem
+    }
+
+    .footer-links a {
+      color: #8BA5BF;
+      text-decoration: none;
+      font-size: 0.855rem;
+      transition: color 0.2s
+    }
+
+    .footer-links a:hover {
+      color: #00C6A2
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.4rem;
+      font-size: 0.78rem
+    }
+
+    @media(max-width:768px) {
+      nav {
+        padding: 0 5%
+      }
+
+      .nav-links,
+      .nav-cta {
+        display: none
+      }
+
+      .hamburger {
+        display: flex
+      }
+
+      .contact-main {
+        padding: 3rem 5%
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem
+      }
+
+      .map-section {
+        padding: 0 5% 3rem
+      }
+
+      .social-section {
+        padding: 3rem 5%
+      }
+
+      .page-header {
+        padding: 3rem 5%
+      }
+
+      .form-row {
+        grid-template-columns: 1fr
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 0.4rem;
+        text-align: center
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Swift<span>Fit</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Book a Session</a>
+    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="page-header">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Contact</div>
+    <h1>Get In Touch</h1>
+    <p>Whether you're ready to start or just have questions, we'd love to hear from you. A coach will respond within 24
+      hours.</p>
+  </div>
+
+  <section class="contact-main">
+    <div class="contact-grid">
+
+      <div class="contact-info">
+        <div class="info-block">
+          <h3>Contact Details</h3>
+          <div class="contact-item">
+            <div class="ci-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
+            <div>
+              <div class="ci-label">Location</div>
+              <div class="ci-value">NR 05, toul sankae<br>Ruessey kaeo, phnom Penh</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.12 12 19.79 19.79 0 0 1 1.05 3.4 2 2 0 0 1 3 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+            </div>
+            <div>
+              <div class="ci-label">Phone</div>
+              <div class="ci-value">(855) 714 490 157</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </div>
+            <div>
+              <div class="ci-label">Email</div>
+              <div class="ci-value">mornsotheara@gmail.com</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-block">
+          <h3>Studio Hours</h3>
+          <table class="hours-table">
+            <tr>
+              <td>Monday – Friday</td>
+              <td>6:00 am – 8:00 pm</td>
+            </tr>
+            <tr>
+              <td>Saturday</td>
+              <td>8:00 am – 4:00 pm</td>
+            </tr>
+            <tr>
+              <td>Sunday</td>
+              <td>8:00 am – 2:00 pm</td>
+            </tr>
+            <tr>
+              <td>Public Holidays</td>
+              <td>Closed</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-label">Send a Message</div>
+        <h2 class="section-title" style="margin-bottom:1.5rem">Book Your Free Discovery Call</h2>
+        <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input id="fname" type="text" placeholder="Morn" required>
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input id="lname" type="text" placeholder="Sotheara" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input id="email" type="email" placeholder="mornsotheara@gmail.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number (optional)</label>
+            <input id="phone" type="tel" placeholder="(855) 714 490 157">
+          </div>
+          <div class="form-group">
+            <label for="plan">Interested In</label>
+            <select id="plan">
+              <option value="">Select a plan...</option>
+              <option>Starter Plan — $89/mo</option>
+              <option>Pro Plan — $159/mo</option>
+              <option>Elite Plan — $249/mo</option>
+              <option>Online Coaching</option>
+              <option>Just want to chat</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="msg">Your Message</label>
+            <textarea id="msg"
+              placeholder="Tell us about your goals, current fitness level, or any questions you have..."></textarea>
+          </div>
+          <p class="form-note">By submitting this form you agree to be contacted by our team. We never share your
+            information.</p>
+          <button type="submit" class="btn-submit">Send Message</button>
+        </form>
+        <div class="success-msg" id="successMsg">
+          <svg viewBox="0 0 24 24">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+            <polyline points="22 4 12 14.01 9 11.01" />
+          </svg>
+          <h3>Message Sent!</h3>
+          <p>Thank you for reaching out. A coach will be in touch within 24 hours.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="map-section">
+    <div class="map-box">
+      <svg viewBox="0 0 24 24">
+        <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+        <circle cx="12" cy="10" r="3" />
+      </svg>
+      <p>NR 05, toul sankae - Ruessey kaeo, phnom Penh</p>
+    </div>
+  </div>
+
+  <section class="social-section">
+    <h2>Follow Our Journey</h2>
+    <p>Stay updated with training tips, client transformations, and studio news.</p>
+    <div class="social-links">
+      <a href="#" class="social-btn">
+        <svg viewBox="0 0 24 24">
+          <rect x="2" y="2" width="20" height="20" rx="5" />
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+        </svg>
+        Instagram
+      </a>
+      <a href="#" class="social-btn">
+        <svg viewBox="0 0 24 24">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+        </svg>
+        Facebook
+      </a>
+      <a href="#" class="social-btn">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.47A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+          <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none" />
+        </svg>
+        YouTube
+      </a>
+      <a href="#" class="social-btn">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+        </svg>
+        TikTok
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Swift<span>Fit</span></div>
+        <p class="footer-desc">A community-first personal training studio helping people build lasting strength,
+          confidence, and health — one session at a time.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Plans</div>
+        <ul class="footer-links">
+          <li><a href="services.html">Starter</a></li>
+          <li><a href="services.html">Pro</a></li>
+          <li><a href="services.html">Elite</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Connect</div>
+        <ul class="footer-links">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">YouTube</a></li>
+          <li><a href="#">TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>2025 SwiftFit Studio. All rights reserved.</span>
+      <span>Built with HTML &amp; CSS</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      var nl = document.querySelector('.nav-links');
+      var open = nl.style.display === 'flex';
+      nl.style.cssText = open ? 'display:none' : 'display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:#F7F9FC;padding:1rem 5%;border-bottom:1px solid #E2EAF4;z-index:99;gap:1rem';
+    }
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+    }
+  </script>
+</body>
+
+</html>
