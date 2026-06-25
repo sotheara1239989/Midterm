@@ -371,7 +371,7 @@
     /* CTA BANNER */
     .cta-banner {
       padding: 4rem 8%;
-      background: #0F1923;
+      background: linear-gradient(rgba(15, 25, 35, .85), rgba(15, 25, 35, .9)), url('../Image/ai-generated-gym-weights-on-textured-background-fitness-concept-photo.jpg') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: space-between;

@@ -105,7 +105,7 @@
 
     /* PAGE HEADER */
     .page-header {
-      background: #0F1923;
+      background: linear-gradient(rgba(15, 25, 35, .82), rgba(15, 25, 35, .88)), url('../Image/874336-3840x2160-desktop-4k-gym-background.jpg') center/cover no-repeat;
       padding: 5rem 8% 4rem;
       color: white
     }
@@ -192,13 +192,10 @@
       position: absolute;
       width: 74%;
       height: 320px;
-      background: linear-gradient(140deg, #0F1923 0%, #1A3550 100%);
+      background: linear-gradient(140deg, rgba(15, 25, 35, .5) 0%, rgba(26, 53, 80, .3) 100%), url('../Image/ai-generated-metal-dumbbells-on-the-floor-in-concept-fitness-room-photo.jpg') center/cover no-repeat;
       border-radius: 16px;
       top: 0;
-      left: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center
+      left: 0
     }
 
     .img-main svg {
@@ -352,7 +349,7 @@
     /* MISSION */
     .mission {
       padding: 5rem 8%;
-      background: #0F1923;
+      background: linear-gradient(rgba(15, 25, 35, .85), rgba(15, 25, 35, .9)), url('../Image/ai-generated-gym-weights-on-textured-background-fitness-concept-photo.jpg') center/cover no-repeat;
       text-align: center
     }
 
